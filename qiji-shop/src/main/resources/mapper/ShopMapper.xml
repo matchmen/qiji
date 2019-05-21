@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qj.shop.mapper.ShopMapper">
+    <resultMap id="BaseShopMap" type="com.qj.shop.domain.Shop">
+        <result column="ID" property="id"/>
+        <result column="SHOP_NAME" property="shopName"/>
+        <result column="SHOP_ADDRESS" property="shopAddress"/>
+        <result column="OPEN_SHOP_DATE" property="openShopDate"/>
+        <result column="BUSINESS_FROM_TIME" property="businessFromTime"/>
+        <result column="BUSINESS_END_TIME" property="businessEndTime"/>
+        <result column="MIANTENANCE_CAR_BRAND" property="miantenanceCarBrand"/>
+        <result column="CONNECT_PHONE" property="connectPhone"/>
+    </resultMap>
+
+    <insert id="insertShop" parameterType="com.qj.shop.domain.Shop">
+        insert into t_shop(ID,SHOP_NAME) values(#{id},#{shopName})
+    </insert>
+
+    <select id="selectById" resultMap="BaseShopMap">
+        select * from t_shop where id = #{id}
+    </select>
+
+    <update id="updateShop" parameterType="com.qj.shop.domain.Shop">
+        update t_shop set SHOP_NAME = #{shopName},
+        <if test="shopAddress != '' || shopAddress != null">
+            SHOP_ADDRESS = #{shopAddress},
+        </if>
+        <if test="openShopDate != '' || openShopDate != null">
+            OPEN_SHOP_DATE = #{openShopDate},
+        </if>
+        <if test="businessFromTime != '' || businessFromTime != null">
+            BUSINESS_FROM_TIME = #{businessFromTime},
+        </if>
+        <if test="businessEndTime != '' || businessEndTime != null">
+            BUSINESS_END_TIME = #{businessEndTime},
+        </if>
+        <if test="miantenanceCarBrand != '' || miantenanceCarBrand != null">
+            MIANTENANCE_CAR_BRAND = #{miantenanceCarBrand},
+        </if>
+        <if test="connectPhone != '' || connectPhone != null">
+            CONNECT_PHONE = #{connectPhone},
+        </if>
+        where id = #{id}
+    </update>
+</mapper>

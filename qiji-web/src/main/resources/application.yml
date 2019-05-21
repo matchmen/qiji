@@ -1,0 +1,25 @@
+server:
+  port: 9090
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: Root@123
+    url: jdbc:mysql://113.142.69.15:3306/qj?useSSL=false
+
+#mybatis:
+#  mapper-locations: classpath*:mapper/*.xml
+#  type-aliases-package: com.qi.*
+#  config-location:
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.qj.**.domain
+
+logging:
+  level:
+    com.qj: debug
+  file: /home/qj/log/web.log
