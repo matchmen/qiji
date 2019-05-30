@@ -8,8 +8,8 @@ import com.qj.user.mapper.UserMapper;
 import com.qj.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 /****
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.findByUsername(username);
         if(!Objects.isNull(user)) {
             Role role = roleMapper.findById(user.getId());
-            user.setRoles(Arrays.asList(role));
+            user.setRole(role);
         }
         return user;
     }
@@ -45,8 +45,16 @@ public class UserServiceImpl implements UserService {
 
         Role role = roleMapper.findById(user.getRoleId());
 
-        user.setRoles(Arrays.asList(role));
+        user.setRole(role);
 
         return new ReturnResult(true,"获取成功",user);
+    }
+
+    @Override
+    @Transactional
+    public void addUser(User user) {
+
+        userMapper.insertUser(user);
+
     }
 }

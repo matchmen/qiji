@@ -41,8 +41,8 @@ public class UserController {
 
         User user = result.getData();
         response.setId(user.getId());
-        response.setUsername(user.getUsername());
-        response.setRoleName(user.getRoles().get(0).getRoleName());
+        response.setUsername(user.getPhoneNumber());
+        response.setRoleName(user.getRole().getRoleName());
 
         return new ResultVO<>(ResponseCode.SUCCESS.name(), "获取成功", response);
 

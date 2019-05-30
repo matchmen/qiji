@@ -19,7 +19,7 @@ public class ShopRegisterRequest {
 
     @NotBlank(message = "店主姓名不能为空")
     @Length(max = 20,message = "店主姓名长度不能超过20")
-    private String ShopOwnerName;
+    private String shopOwnerName;
 
     @NotBlank(message = "店主手机不能为空")
     private String phoneNumber;

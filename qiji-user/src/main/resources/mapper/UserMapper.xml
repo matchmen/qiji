@@ -5,18 +5,25 @@
 <mapper namespace="com.qj.user.mapper.UserMapper">
     <resultMap id="BaseUserMap" type="com.qj.user.domain.User">
         <result column="ID" property="id"/>
-        <result column="USERNAME" property="username"/>
+        <result column="SHOP_ID" property="shopId"/>
+        <result column="NAME" property="name"/>
+        <result column="PHONE_NUMBER" property="phoneNumber"/>
         <result column="PASSWORD" property="password"/>
         <result column="ROLE_ID" property="roleId"/>
+
     </resultMap>
 
     <select id="findByUsername" resultMap="BaseUserMap">
-        select * from t_user where username = #{username}
+        select * from t_user where PHONE_NUMBER = #{username}
     </select>
 
     <select id="findById" resultMap="BaseUserMap">
         select * from t_user where ID = #{id}
     </select>
 
+    <insert id="insertUser" parameterType="com.qj.user.domain.User">
+        insert into t_user(ID,SHOP_ID,NAME,PHONE_NUMBER,PASSWORD,ROLE_ID)
+        values (#{id},#{shopId},#{name},#{phoneNumber},#{password},#{roleId})
+    </insert>
 
 </mapper>

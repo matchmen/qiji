@@ -27,6 +27,10 @@ public class AuthUser implements UserDetails {
 
     private String password;
 
+    private Long shopId;
+
+    private Long id;
+
     private List<String> roleNames;
 
     private List<QJGrantedAuthority> qjGrantedAuthorities;

@@ -3,8 +3,6 @@ package com.qj.user.domain;
 import lombok.Data;
 import lombok.ToString;
 
-import java.util.List;
-
 /****
  *
  * author:lqm
@@ -16,13 +14,17 @@ public class User {
 
     private Long id;
 
-    private String username;
+    private Long shopId;
+
+    private String name;
+
+    private String phoneNumber;
 
     private String password;
 
     private Long roleId;
 
-    private List<Role> roles;
+    private Role role;
 
 
 }

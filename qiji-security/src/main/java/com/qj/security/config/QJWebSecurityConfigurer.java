@@ -2,6 +2,7 @@ package com.qj.security.config;
 
 import com.qj.security.handle.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 //import org.springframework.context.annotation.Primary;
@@ -56,7 +57,7 @@ public class QJWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
                 //"/login"不进行权限验证
-                .antMatchers("/login").permitAll()
+                .antMatchers("/login","/qj/shop/notNeedLogin/register").permitAll()
                 .anyRequest().authenticated()  //其他的需要登陆后才能访问
                 .and()
                 .formLogin()

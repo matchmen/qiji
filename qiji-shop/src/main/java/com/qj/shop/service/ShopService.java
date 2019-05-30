@@ -17,5 +17,6 @@ public interface ShopService {
 
     ReturnResult<Shop> getShopInfo(Long id);
 
+    ReturnResult<Shop> getShopInfoByShopName(String shopName);
 
 }

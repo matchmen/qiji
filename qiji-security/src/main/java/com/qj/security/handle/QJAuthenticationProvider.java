@@ -1,13 +1,7 @@
 package com.qj.security.handle;
 
-import com.qj.common.embed.ReturnResult;
 import com.qj.security.embed.AuthUser;
-import com.qj.security.embed.QJGrantedAuthority;
 import com.qj.security.service.QJUserDetailServiceImpl;
-import com.qj.user.domain.Permission;
-import com.qj.user.domain.User;
-import com.qj.user.service.PermissionService;
-import com.qj.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;

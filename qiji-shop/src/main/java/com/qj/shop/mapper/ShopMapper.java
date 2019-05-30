@@ -16,4 +16,6 @@ public interface ShopMapper {
 
     void updateShop(Shop shop);
 
+    Shop selectByShopName(@Param("shopName") String shopName);
+
 }

@@ -49,4 +49,12 @@ public class ShopServiceImpl implements ShopService {
 
         return new ReturnResult<>(true, "操作成功",shop);
     }
+
+    @Override
+    public ReturnResult<Shop> getShopInfoByShopName(String shopName) {
+
+        Shop shop = shopMapper.selectByShopName(shopName);
+
+        return new ReturnResult<>(true, "操作成功",shop);
+    }
 }

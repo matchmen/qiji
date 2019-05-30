@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qj.car.mapper.CarMapper">
+    <resultMap id="BaseCarMap" type="com.qj.car.domain.Car">
+        <result column="ID" property="id"/>
+        <result column="SHOP_ID" property="shopId"/>
+        <result column="MODEL" property="model"/>
+        <result column="BRAND" property="brand"/>
+        <result column="CAR_ONWER_NAME" property="carOnwerName"/>
+        <result column="DESCRIPTION" property="description"/>
+
+    </resultMap>
+
+    <insert id="insertCar" parameterType="com.qj.car.domain.Car">
+        insert into t_shop(ID,SHOP_ID,MODEL,BRAND,CAR_ONWER_NAME,DESCRIPTION)
+        values(#{id},#{shopId},#{model},#{brand},#{carOnwerName},#{description})
+    </insert>
+
+    <select id="selectById" resultMap="BaseCarMap">
+        select * from t_car where id = #{id} and SHOP_ID = #{shopId}
+    </select>
+
+    <update id="updateCar" parameterType="com.qj.car.domain.Car">
+        update t_car set MODEL = #{model},
+        <if test="brand != '' || brand != null">
+            BRAND = #{brand},
+        </if>
+        <if test="carOnwerName != '' || carOnwerName != null">
+            CAR_ONWER_NAME = #{carOnwerName},
+        </if>
+        <if test="description != '' || description != null">
+            DESCRIPTION = #{description},
+        </if>
+        where id = #{id}
+    </update>
+
+    <select id="selectByModel" resultMap="BaseCarMap">
+        select * from t_car where SHOP_NAME = #{model} and SHOP_ID = #{shopId}
+    </select>
+
+    <select id="selectCars" resultMap="BaseCarMap">
+        select * from t_car where SHOP_ID = #{shopId}
+        <if test="model = null || model =! ''">
+            and MODEL = #{model}
+        </if>
+
+        <if test="carOnwerName = null || carOnwerName =! ''">
+            and CAR_ONWER_NAME = #{carOnwerName}
+        </if>
+
+        <if test="brand = null || brand =! ''">
+            and BRAND = #{brand}
+        </if>
+
+    </select>
+
+</mapper>

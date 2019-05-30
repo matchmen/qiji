@@ -14,5 +14,7 @@ public interface UserMapper {
 
     User findById(@Param("id") Long id);
 
+    void insertUser(User user);
+
 
 }

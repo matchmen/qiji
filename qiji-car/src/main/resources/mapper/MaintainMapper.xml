@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qj.car.mapper.MaintainRecordMapper">
+    <resultMap id="BaseMaintainRecordMap" type="com.qj.car.domain.MaintainRecord">
+        <result column="ID" property="id"/>
+        <result column="SHOP_ID" property="shopId"/>
+        <result column="CAR_ID" property="carId"/>
+        <result column="PERSION_INCHANGE_ID" property="persionInchangeId"/>
+        <result column="MAINTAIN_DATE" property="maintainDate"/>
+        <result column="MAINTAIN_TITLE" property="maintainTitle"/>
+        <result column="MAINTAIN_INFO" property="maintainInfo"/>
+    </resultMap>
+
+    <insert id="insertMaintainRecord" parameterType="com.qj.car.domain.MaintainRecord">
+        insert  into t_maintain_record(ID,SHOP_ID,CAR_ID,PERSION_INCHANGE_ID,MAINTAIN_DATE,MAINTAIN_TITLE,MAINTAIN_INFO)
+        values (#{id},#{shopId},#{carId},#{persionInchangeId},#{maintainDate},#{maintainTitle},#{maintainInfo});
+    </insert>
+
+    <select id="selectById" resultMap="BaseMaintainRecordMap">
+        select * from t_maintain_record where ID = #{id} and SHOP_ID = #{shopId}
+    </select>
+
+    <select id="selectByCarId" resultMap="BaseMaintainRecordMap">
+        select * from t_maintain_record where CAR_ID = #{carId} and SHOP_ID = #{shopId}
+    </select>
+
+    <update id="updateMaintain" parameterType="com.qj.car.domain.MaintainRecord">
+        update t_maintain_record set MAINTAIN_TITLE = #{maintainTitle},MAINTAIN_DATE = #{maintainDate},MAINTAIN_INFO = #{maintainInfo}
+        where id = #{id}
+    </update>
+
+    <select id="selectList" resultMap="BaseMaintainRecordMap">
+        select mr.* from t_maintain_record mr
+        inner join t_car c on(c.id = mr.id)
+        where mr.SHOP_ID = #{shopId}
+        <if test="from != null">
+            and MAINTAIN_DATE > #{from}
+        </if>
+        <if test="end != null">
+            and MAINTAIN_DATE &lt; #{end}
+        </if>
+        <if test="brand != null">
+            and c.BRAND = #{brand}
+        </if>
+
+    </select>
+</mapper>

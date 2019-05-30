@@ -14,5 +14,6 @@ public interface UserService {
 
     ReturnResult<User> getUserById(Long id);
 
+    void addUser(User user);
 
 }

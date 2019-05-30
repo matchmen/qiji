@@ -1,5 +1,6 @@
 package com.qj.common.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -32,6 +33,8 @@ public class DateUtil {
 
     public static final String STANDARD_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
+    public static final String yyyyMMddHHmmss = "yyyyMMddHHmmss";
+
     public static final DateTimeFormatter DAY_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     /**
@@ -49,6 +52,21 @@ public class DateUtil {
                 java.time.LocalDate.parse(endDate, fmt));
         result = result + 1 >= 1 ? result + 1 : 0;
         return result;
+    }
+
+    public static Date format(String source){
+
+        SimpleDateFormat sdf = new SimpleDateFormat();
+
+        if(QjStringUtil.isBlank(source)){
+            return null;
+        }
+        try {
+            return sdf.parse(source);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**

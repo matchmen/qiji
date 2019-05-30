@@ -56,7 +56,11 @@ public class QJUserDetailServiceImpl implements UserDetailsService {
 
         authUser.setPassword(user.getPassword());
 
-        authUser.setUsername(user.getUsername());
+        authUser.setId(user.getId());
+
+        authUser.setShopId(user.getShopId());
+
+        authUser.setUsername(user.getPhoneNumber());
 
         authUser.setQjGrantedAuthorities(qjGrantedAuthorities);
 

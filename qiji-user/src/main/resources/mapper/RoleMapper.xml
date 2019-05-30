@@ -7,9 +7,18 @@
         <result column="ID" property="id"/>
         <result column="ROLE_NAME" property="roleName"/>
         <result column="DESCRIPTION" property="description"/>
+        <result column="ROLE_CODE" property="roleCode"/>
     </resultMap>
 
     <select id="findById" resultMap="BaseRoleMap">
         select * from t_role where id = #{id}
+    </select>
+
+    <select id="selectByRoleName" resultMap="BaseRoleMap">
+        select * from t_role where ROLE_NAME = #{roleName}
+    </select>
+
+    <select id="selectByRoleCode" resultMap="BaseRoleMap">
+        select * from t_role where ROLE_CODE = #{roleCode}
     </select>
 </mapper>

@@ -44,4 +44,9 @@
         </if>
         where id = #{id}
     </update>
+
+    <select id="selectByShopName" resultMap="BaseShopMap">
+        select * from t_shop where SHOP_NAME = #{shopName}
+    </select>
+
 </mapper>
